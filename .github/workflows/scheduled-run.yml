@@ -10,6 +10,10 @@ jobs:
   run-parser:
     runs-on: ubuntu-latest
     
+    # 添加权限配置以允许推送
+    permissions:
+      contents: write
+    
     steps:
     - name: Checkout repository
       uses: actions/checkout@v3
@@ -32,5 +36,6 @@ jobs:
       run: |
         git config --local user.email "action@github.com"
         git config --local user.name "GitHub Action"
-        git add -A
+        # 只添加 .m3u8 文件
+        git add *.m3u8
         git diff --quiet && git diff --staged --quiet || (git commit -m "Auto update channels list" && git push)
