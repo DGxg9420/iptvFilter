@@ -1,0 +1,13 @@
+[project]
+name = "iptvfilter"
+version = "0.1.0"
+description = "Filter the live broadcast channel released by epg.pw with a playback speed of 500kb."
+readme = "README.md"
+requires-python = ">=3.14"
+dependencies = [
+    "httpx>=0.28.1",
+]
+
+[[tool.uv.index]]
+url = "https://mirrors.tuna.tsinghua.edu.cn/pypi/web/simple"
+default = true
