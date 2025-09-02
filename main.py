@@ -16,7 +16,7 @@ def get_content(url):
     headers = {
         "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/89.0.4389.90 Safari/537.36"
     }
-    with httpx.Client(headers=headers) as client:
+    with httpx.Client(headers=headers, timeout=10) as client:
         response = client.get(url, headers=headers)
         return response.text
 
@@ -36,6 +36,8 @@ def download_and_measure_speed(ts_url):
                     count = 0
                     for chunk in response.iter_bytes(chunk_size=1024 * 1024):
                         count += 1
+                        if not chunk:
+                            break
                         content_length = len(chunk)
                         if count >= 5:
                             break
@@ -153,6 +155,8 @@ def save_results_to_file(play_queue, filename="channels.txt"):
     with open(filename, 'w', encoding='utf-8') as f:
         f.write(f"#EXTM3U x-tvg-url=\"https://epg.pw/xmltv/epg_lite.xml\"\n")
         f.write(f"#This file is re-writen by ssson.\n")
+        if not total_items:
+            return
         while not play_queue.empty():
             channel_info, play_url = play_queue.get()
             f.write(f"{channel_info}\n{play_url}\n")
