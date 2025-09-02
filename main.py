@@ -110,7 +110,7 @@ def parse_m3u8(m3u8_Url: str):
     # 筛选出需要处理的行
     process_lines = []
     process_lines_info = []
-    for line_num, line_content in enumerate(m3u8_Url_Content_lines[:100]):
+    for line_num, line_content in enumerate(m3u8_Url_Content_lines):
         if not line_content.startswith("#") and line_content:
             prev_line = m3u8_Url_Content_lines[line_num - 1] if line_num > 0 else ""
             process_lines.append((line_content, prev_line))
