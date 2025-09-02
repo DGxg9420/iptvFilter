@@ -2,8 +2,9 @@ name: Scheduled M3U8 Parser Run
 
 on:
   schedule:
-    # 每24小时运行一次，这里设置为每天UTC时间0点运行
-    - cron: '0 0 * * *'
+    # 每周三0点和每周周六12点执行
+    - cron: '0 0 * * 3'
+    - cron: '0 12 * * 6'
   workflow_dispatch: # 允许手动触发工作流
 
 jobs:
