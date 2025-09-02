@@ -28,10 +28,10 @@ uv sync
 ## 播放连接
 
 ### 科学上网
-**group_channels.m3u8**
+**https://raw.githubusercontent.com/DGxg9420/iptvFilter/refs/heads/master/group_channels.m3u8**
 
 ### 镜像代理
-**group_channels.m3u8**
+**https://ghfast.top/https://raw.githubusercontent.com/DGxg9420/iptvFilter/refs/heads/master/group_channels.m3u8**
 
 
 
