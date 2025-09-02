@@ -32,10 +32,16 @@ jobs:
       run: |
         python main.py
 
+    - name: Run replace_proxy_url.py
+      run: |
+        python replace_proxy_url.py
+
     - name: Commit and push changes
       run: |
         git config --local user.email "action@github.com"
         git config --local user.name "GitHub Action"
         # 只添加 .m3u8 文件
         git add *.m3u8
+        # 更新readme
+        git add README.md
         git diff --quiet && git diff --staged --quiet || (git commit -m "Auto update channels list" && git push)

@@ -33,5 +33,8 @@ uv sync
 ### 镜像代理
 **https://ghfast.top/https://raw.githubusercontent.com/DGxg9420/iptvFilter/refs/heads/master/group_channels.m3u8**
 
+## 节目指南XML
+**https://epg.pw/xmltv/epg.xml**
+
 
 
