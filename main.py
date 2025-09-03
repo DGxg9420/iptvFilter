@@ -17,8 +17,12 @@ def get_content(url):
         "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/89.0.4389.90 Safari/537.36"
     }
     with httpx.Client(headers=headers, timeout=10) as client:
-        response = client.get(url, headers=headers)
-        return response.text
+        try:
+            response = client.get(url, headers=headers)
+            return response.text
+        except Exception as e:
+            print(f"获取URL内容时出错: {e!r}")
+            return None
 
 
 def download_and_measure_speed(ts_url):
@@ -66,6 +70,8 @@ def process_m3u8_url(line_content, prev_line, index, total):
 
             if line_content.endswith(".m3u8") and "stream1.freetv.fun" in line_content:
                 real_play_m3u8_content = get_content(line_content.strip())
+                if not real_play_m3u8_content:
+                    return None
                 results = re.findall(r"^(?!#).*$", real_play_m3u8_content, re.MULTILINE)
                 results = list(filter(bool, results))
                 if len(results) == 1:
